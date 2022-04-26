@@ -10,13 +10,15 @@ public class Principal{
         //int numo;
         //String nom;
         ArrayList<Zombie> arg = new ArrayList<Zombie>();
+        ArrayList<Ubicacion> arg2 = new ArrayList<Ubicacion>();
+        String phrases[] = {"Zombies are dangerous","Zombies are contagious","Zombies are hard to kill","Zombies are Unpredictable","Zombies are Ugly"};
         while (true) {
             
             switch (input.nextByte()) {
                 case 0:
                     return 0;
                 case 1:
-                    System.out.println("Ingrese el nombre, luego la salud, luego la fecha de nacimiento y finalmente el tipo de sangre del zombie (Usa mayusculas para el typo de Sangre)");
+                    System.out.println("Ingrese el nombre, luego la salud, luego la fecha de nacimiento y finalmente el tipo de sangre del zombie (Usa mayusculas para el typo de Sangre): ");
                     arg.add(new Zombie (input.next(),input.nextInt(),input.nextShort(),input.next()));
                     break;
                 case 2:
@@ -34,6 +36,25 @@ public class Principal{
                 case 6:
                     arg.forEach((n)->n.salud=n.salud/2);
                     break;
+                case 7:
+                    System.out.println("Ingrese el nombre, luego la distancia a Alexandria y finalmente la cantidad de Zombies de esta ubicacion ");
+                    arg2.add(new Ubicacion (input.next(),input.nextInt(),input.nextShort()));
+                    break;
+                case 8:
+                    arg2.forEach((n)->components2(n));
+                    break;
+                case 9:
+                    components2(arg2.get(saferLocation(arg2)));
+                    break;
+                case 10:
+                    bubbleSort(arg2);
+                    arg2.forEach((n)->components2(n));
+                    break;
+                case 11:
+                    for(String phrase:phrases){
+                        System.out.println(phrase);
+                    }
+                    break;
             }
         }
     }
@@ -50,4 +71,37 @@ public class Principal{
             components(n);
         }
     }
+    
+    static void components2(Ubicacion n){
+        System.out.println("\nNombre " + n.nombre + "\nDistancia "+ n.distancia +"\nCantidad " + n.cantidad + "\n \n");
+    }
+    
+    static int saferLocation(ArrayList<Ubicacion> n){
+        int minIndex = 0;
+        short min = n.get(0).cantidad;
+        for(int i=0; i<n.size(); i++){
+            if(n.get(i).cantidad<min){
+                min = n.get(i).cantidad;
+                minIndex = i;
+            }
+        }
+        return minIndex;
+    }
+    
+    static void bubbleSort(ArrayList<Ubicacion> n) {
+    boolean sorted = false;
+    Ubicacion temp;
+    while(!sorted) {
+        sorted = true;
+        for (int i = 0; i < n.size() - 1; i++) {
+            if (n.get(i).distancia > n.get(i+1).distancia) {
+                temp = n.get(i);
+                n.set(i,n.get(i+1));
+                n.set(i+1,temp);
+                sorted = false;
+            }
+        }
+    }
+}	
+
 }
