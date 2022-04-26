@@ -11,5 +11,12 @@ public class Zombie{ //Tenias razon en hacer esta parte publica, por que las ins
         this.tipoSangre = t;
     }
     
+        public Zombie(Zombie Z){
+        this.nombre = Z.nombre;
+        this.salud = Z.salud;
+        this.fechaNacimiento = Z.fechaNacimiento;
+        this.tipoSangre = Z.tipoSangre;
+    }
+    
     
 }

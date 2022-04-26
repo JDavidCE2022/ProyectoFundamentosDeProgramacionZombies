@@ -1,7 +1,7 @@
 import java.util.*;
 public class Principal{
     public static void main  (String[]args){        
-        System.out.println("<<<Menu Informcaión zombies, Alexandria>>>\n-Ingrese un numero para:\n-0 Salir\n-1 Ingresar un nuevo zombie\n-2 Información zombies\n-3 Cantidad de zombies\n-4 Zombies por Sangre\n-5 Zombies por fecha\n-6 Disminuir salud zombies a la mitad\n-7 Añadir ubicación\n-8 Información ubicaciones\n-9 Ubicación más segura\n-10 Ubicaciones ordenadas por distancia\n-11 Frases zombies\n-12 WIP");
+        System.out.println("<<<Menu Informcaión zombies, Alexandria>>>\n-Ingrese un numero para:\n-0 Salir\n-1 Ingresar un nuevo zombie\n-2 Información zombies\n-3 Cantidad de zombies\n-4 Zombies por Sangre\n-5 Zombies por fecha\n-6 Disminuir salud zombies a la mitad\n-7 Añadir ubicación\n-8 Información ubicaciones\n-9 Ubicación más segura\n-10 Ubicaciones ordenadas por distancia\n-11 Frases zombies\n-12 Para copiar un zombie");
         mostrarMenu();
     }
     public static int mostrarMenu () { //terminados: 0, 1, 2, 3, 4, 5, 6
@@ -11,6 +11,7 @@ public class Principal{
         //String nom;
         ArrayList<Zombie> arg = new ArrayList<Zombie>();
         ArrayList<Ubicacion> arg2 = new ArrayList<Ubicacion>();
+        Random rand = new Random(); //Sabes sí hay una función statica para pseudo azar? 
         String phrases[] = {"Zombies are dangerous","Zombies are contagious","Zombies are hard to kill","Zombies are Unpredictable","Zombies are Ugly"};
         while (true) {
             
@@ -51,9 +52,14 @@ public class Principal{
                     arg2.forEach((n)->components2(n));
                     break;
                 case 11:
-                    for(String phrase:phrases){
-                        System.out.println(phrase);
-                    }
+                    
+                        System.out.println(phrases[rand.nextInt(5)]);
+
+                    break;
+                case 12:
+                    System.out.println("Copia el numero de la posición del zombie que quieres copiar (empezando en 0)");
+                    arg.forEach((n)->components(n));
+                    arg.add(new Zombie (arg.get(input.nextInt())));
                     break;
             }
         }
