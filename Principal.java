@@ -19,7 +19,7 @@ public class Principal{
                 case 0:
                     return 0;
                 case 1:
-                    System.out.println("Ingrese el nombre, luego la salud, luego la fecha de nacimiento y finalmente el tipo de sangre del zombie (Usa mayusculas para el typo de Sangre): ");
+                    System.out.println("Ingrese el nombre, luego la salud, luego la fecha de nacimiento y finalmente el tipo de sangre del zombie (Usa mayusculas para el tipo de Sangre): ");
                     arg.add(new Zombie (input.next(),input.nextInt(),input.nextShort(),input.next()));
                     break;
                 case 2:
